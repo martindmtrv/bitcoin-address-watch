@@ -15,6 +15,8 @@ export function filterAddr(addrs: String[]) {
     }
 
     // send webhook notif
+
+    // TODO: add a special signature so these messages cannot be mocked by a bad actor
     for (const doc of docs) {
       console.log(`Found match ${doc.address}, sending webhook`);
 

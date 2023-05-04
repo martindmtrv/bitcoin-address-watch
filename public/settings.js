@@ -1,8 +1,4 @@
-console.log("test");
-
-
 function removeAddress(address) {
-  console.log(address);
   fetch("/api/settings/address", {
     method: "DELETE",
     headers: {
