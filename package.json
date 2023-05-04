@@ -17,7 +17,8 @@
     "zeromq": "^6.0.0-beta.16"
   },
   "scripts": {
-    "start": "ts-node src/main.ts"
+    "start": "ts-node src/main.ts",
+    "build": "docker build . -t martindmtrv/bitcoin-address-watch"
   },
   "devDependencies": {
     "@types/express": "^4.17.17",

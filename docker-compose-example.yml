@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  bitcoin-watch:
+    container_name: bitcoin-watch
+    image: martindmtrv/bitcoin-address-watch
+    environment:
+      - BITCOIN_RPC_HOST=btcnode:8443
+      - BITCOIN_ZMQ_HOST=btcnode:29335
+      - MONGO_DB_CONNECTION=mongo+srv://user:pw@host/database
+      - RPC_USER=rpcuser
+      - RPC_PASSWORD=rpcpassword
+      - WEBHOOK_URL=https://webhooklocation.com/webhook
+    ports:
+      - 3000:3000
