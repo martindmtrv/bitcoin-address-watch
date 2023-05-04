@@ -3,6 +3,8 @@ import { dbInit } from "./db/DBConnect";
 import { spawn, Worker } from "threads";
 import { IBlockListener } from "./workers/BlockListener";
 import { filterAddr } from "./util/AddressFilter";
+import express from "express";
+import settingsRoute from "./workers/SettingsRouter";
 
 dotenv.config();
 
@@ -15,7 +17,19 @@ async function main() {
   listener.run();
 
   listener.queue().subscribe(filterAddr);
-  console.log("main thread");
+
+  // start settings server
+  const app = express();
+
+  app.use(express.json());
+  app.use(express.static("public"));
+  app.use("/api/settings", settingsRoute);
+
+  app.listen(3000, () => {
+    console.log("listening on port 3000");
+  })
+
+  
 }
 
 main();
