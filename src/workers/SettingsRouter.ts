@@ -13,6 +13,11 @@ route.get("/address", (req, res) => {
 route.post("/address", (req, res) => {
   const address = req.body.address;
 
+  if (!address) {
+    res.status(400).json({ err: "address cannot be blank" });
+    return;
+  }
+
   Address.findOne({ address }).exec().then((doc) => {
     if (doc != null) {
       res.status(400).json({err: "Address already being tracked"});
